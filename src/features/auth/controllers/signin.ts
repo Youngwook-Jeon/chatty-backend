@@ -7,8 +7,13 @@ import JWT from 'jsonwebtoken';
 import HTTP_STATUS from 'http-status-codes';
 import { loginSchema } from '@auth/schemes/signin';
 import { IAuthDocument } from '@auth/interfaces/auth.interface';
-import { IUserDocument } from '@user/interfaces/user.interface';
+import { IResetPasswordParams, IUserDocument } from '@user/interfaces/user.interface';
 import { userService } from '@service/db/user.service';
+import { forgotPasswordTemplate } from '@service/emails/templates/forgot-password/forgot-password-template';
+import { emailQueue } from '@service/queues/email.queue';
+import moment from 'moment';
+import publicIP from 'ip';
+import { resetPasswordTemplate } from '@service/emails/templates/reset-password/reset-password-template';
 
 export class SignIn {
   @joiValidation(loginSchema)
@@ -38,6 +43,7 @@ export class SignIn {
     );
 
     req.session = { jwt: userJwt };
+
     const userDocument: IUserDocument = {
       ...user,
       authId: existingUser!._id,
