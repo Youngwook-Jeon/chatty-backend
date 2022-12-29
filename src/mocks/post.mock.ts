@@ -30,6 +30,9 @@ interface IBody {
   privacy?: string;
   imgId?: string;
   imgVersion?: string;
+  videoId?: string;
+  videoVersion?: string;
+  video?: string;
   profilePicture?: string;
   feelings?: string;
 }
@@ -41,6 +44,8 @@ export const newPost: IBody = {
   imgId: '',
   imgVersion: '',
   image: '',
+  videoId: '',
+  videoVersion: '',
   privacy: 'Public',
   profilePicture: 'http://place-hold.it/500x500',
   feelings: 'happy'
@@ -57,6 +62,8 @@ export const postMockData: IPostDocument = {
   bgColor: '#f44336',
   imgId: '',
   imgVersion: '',
+  videoId: '',
+  videoVersion: '',
   feelings: 'happy',
   gifUrl: '',
   privacy: 'Public',
@@ -80,7 +87,9 @@ export const updatedPost = {
   privacy: 'Private',
   gifUrl: '',
   imgId: '',
-  imgVersion: ''
+  imgVersion: '',
+  videoId: '',
+  videoVersion: ''
 };
 
 export const updatedPostWithImage = {
@@ -92,5 +101,7 @@ export const updatedPostWithImage = {
   gifUrl: '',
   imgId: '',
   imgVersion: '',
-  image: ''
+  image: '',
+  videoId: '',
+  videoVersion: '',
 };
