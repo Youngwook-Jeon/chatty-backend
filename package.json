@@ -4,13 +4,18 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "NODE_ENV=production pm2 start ./build/src/app.js -i 5 --attach --watch | ./node_modules/.bin/bunyan",
+    "stop": "pm2 stop all",
+    "delete": "pm2 delete all",
     "dev": "nodemon -r tsconfig-paths/register src/app.ts | ./node_modules/.bin/bunyan",
     "lint:check": "eslint 'src/**/*.ts'",
     "lint:fix": "eslint 'src/**/*.ts' --fix",
     "prettier:check": "prettier --check 'src/**/*.{ts,json}'",
     "prettier:fix": "prettier --write 'src/**/*.{ts,json}'",
     "test": "jest --coverage=true -w=1 --forceExit --detectOpenHandles --watchAll=false",
-    "build": "ttsc -p ."
+    "build": "ttsc -p .",
+    "seed:dev": "npx ts-node src/seeds.ts",
+    "seed:prod": "npx ts-node ./build/src/seeds.ts"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +23,7 @@
   "dependencies": {
     "@bull-board/express": "^4.4.0",
     "@bull-board/ui": "^4.4.0",
+    "@faker-js/faker": "^7.6.0",
     "@sendgrid/mail": "^7.7.0",
     "@socket.io/redis-adapter": "^7.2.0",
     "@types/jest": "^29.1.2",
@@ -25,6 +31,7 @@
     "bcryptjs": "^2.4.3",
     "bull": "^4.10.0",
     "bunyan": "^1.8.15",
+    "canvas": "^2.11.0",
     "cloudinary": "^1.32.0",
     "compression": "^1.7.4",
     "cookie-session": "^2.0.0",
@@ -45,6 +52,7 @@
     "nodemailer": "^6.8.0",
     "redis": "^4.3.1",
     "socket.io": "^4.5.2",
+    "swagger-stats": "^0.99.4",
     "ttypescript": "^1.5.13",
     "typescript": "^4.8.4",
     "typescript-transform-paths": "^3.3.1"
@@ -63,6 +71,8 @@
     "@types/jsonwebtoken": "^8.5.9",
     "@types/lodash": "^4.14.186",
     "@types/nodemailer": "^6.4.6",
+    "@types/redis-info": "^3.0.0",
+    "@types/swagger-stats": "^0.95.7",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
     "eslint": "^8.24.0",

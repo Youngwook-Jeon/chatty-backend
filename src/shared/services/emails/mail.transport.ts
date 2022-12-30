@@ -18,6 +18,7 @@ sendGridMail.setApiKey(config.SENDGRID_API_KEY!);
 
 class MailTransport {
   public async sendEmail(receiverEmail: string, subject: string, body: string): Promise<void> {
+    // this.productionEmailSender(receiverEmail, subject, body);
     if (config.NODE_ENV === 'test' || config.NODE_ENV === 'development') {
       this.developmentEmailSender(receiverEmail, subject, body);
     } else {
@@ -54,7 +55,7 @@ class MailTransport {
 
   private async productionEmailSender(receiverEmail: string, subject: string, body: string): Promise<void> {
     const mailOptions: IMailOptions = {
-      from: `Chatty App <${config.SENDER_EMAIL!}>`,
+      from: `Chatty App <${config.SENDGRID_SENDER!}>`,
       to: receiverEmail,
       subject,
       html: body,
