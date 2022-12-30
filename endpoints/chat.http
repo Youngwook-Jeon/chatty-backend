@@ -1,0 +1,87 @@
+@baseUrl = http://localhost:5000
+@urlPath = api/v1
+
+###
+POST {{baseUrl}}/{{urlPath}}/chat/message
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "conversationId": "",
+  "receiverId": "638de42ef6036e197045382b",
+  "receiverUsername": "Ela87",
+  "receiverAvatarColor": "red",
+  "receiverProfilePicture": "https://res.cloudinary.com/dw6i0vp1r/image/upload/v1670243376/638de42ef6036e197045382b",
+  "body": "Hello, how are you~~~",
+  "gifUrl": "",
+  "isRead": false,
+  "selectedImage": ""
+}
+
+###
+POST {{baseUrl}}/{{urlPath}}/chat/message/add-chat-users
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "userOne": "638de404f6036e1970453824",
+  "userTwo": "638de42ef6036e197045382b"
+}
+
+###
+POST {{baseUrl}}/{{urlPath}}/chat/message/remove-chat-users
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "userOne": "638de404f6036e1970453824",
+  "userTwo": "638de42ef6036e197045382b"
+}
+
+###
+GET {{baseUrl}}/{{urlPath}}/chat/message/conversation-list
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/chat/message/user/638de42ef6036e197045382b
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+DELETE {{baseUrl}}/{{urlPath}}/chat/message/mark-as-deleted/639c7362b2b8bb123106c009/638de404f6036e1970453824/638de42ef6036e197045382b/deleteForMe
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+PUT {{baseUrl}}/{{urlPath}}/chat/message/mark-as-read
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "senderId": "638de404f6036e1970453824",
+  "receiverId": "638de42ef6036e197045382b"
+}
+
+
+###
+PUT {{baseUrl}}/{{urlPath}}/chat/message/reaction
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "conversationId": "639c7362b2b8bb123106c00a",
+  "messageId": "639c7362b2b8bb123106c009",
+  "reaction": "happy",
+  "type": "remove"
+}
